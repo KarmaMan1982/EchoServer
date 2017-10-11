@@ -59,8 +59,15 @@ void EchoServer::processTextMessage(QString message)
     Summand1 = jsonObj["tbSummand1"].toString().toFloat();
     Summand2 = jsonObj["tbSummand2"].toString().toFloat();
     Summe = Summand1 + Summand2;
+    QJsonObject returnJSON;
+    returnJSON["tbSummand1"] = Summand1;
+    returnJSON["tbSummand2"] = Summand2;
+    returnJSON["tbSumme"] = Summe;
 
-    QString ServerMessage(QString::number(Summe));
+    QJsonDocument json_doc(returnJSON);
+    QString json_string = json_doc.toJson();
+
+    QString ServerMessage(json_string);
     if (m_debug)
         qDebug() << "Message received:" << message;
     if (pClient) {
