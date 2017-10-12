@@ -44,14 +44,8 @@ void EchoServer::onNewConnection()
 void EchoServer::processTextMessage(QString message)
 {
     QWebSocket *pClient = qobject_cast<QWebSocket *>(sender());
-    //QString ServerMessage("Server: ");
-    //ServerMessage.append(message);
     QJsonDocument jsonResponse = QJsonDocument::fromJson(message.toUtf8());
     QJsonObject jsonObj = jsonResponse.object();
-    //ServerMessage.append("Erster Summand: ");
-    //ServerMessage.append(jsonObj["tbSummand1"].toString());
-    //ServerMessage.append("Zweiter Summand: ");
-    //ServerMessage.append(jsonObj["tbSummand2"].toString());
     float Summand1;
     float Summand2;
     float Summe;
