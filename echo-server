@@ -1,0 +1,31 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          Verwaltet den Demo-Server?
+# Required-Start:    Was muss vorher gestartet sein?
+# Required-Stop:     Was muss vorher beendet werden?
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Kurze Beschreibung
+# Description:       Längere Beschreibung
+# https://www.antary.de/2011/09/08/linux-autostartskript-erstellen-und-einbinden/
+### END INIT INFO
+# Author: <name@domain.tld>
+
+# Aktionen
+case "$1" in
+    start)
+	echo "Startet EchoServer!"
+        /opt/EchoServer &
+        ;;
+    stop)
+	echo "Killt EchoServer!"
+	killall EchoServer
+        ;;
+    restart)
+	echo "EchoServer Neustart!"
+	killall EchoServer
+        /opt/EchoServer &
+        ;;
+esac
+
+exit 0
